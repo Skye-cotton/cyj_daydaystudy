@@ -18,5 +18,4 @@ function bindThis(f, oTarget) {
 
 
 // 测试用例
-
 console.log(function () { var r = bindThis(function(a, b){return this.test + a + b}, {test: 2})(2, 3); return r === 7; })
