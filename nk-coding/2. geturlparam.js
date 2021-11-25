@@ -14,7 +14,7 @@ function getUrlParam(sUrl, sKey) {
     var param = sUrl.split('#')[0].split('?')[1].split('&')
     var result = []
     var resobj = {}
-    console.log(sUrl)
+    console.log(param)
     if(sKey) {
         for(let i =0;i < param.length; i++) {
             // 键值对
@@ -30,15 +30,17 @@ function getUrlParam(sUrl, sKey) {
         }else {
             return result
         }
-    }else {
+    }else { // 没有传指定参数名称，需要用对象形式如：{ key: [ '1', '2', '3' ], test: [ '4' ] }
         for(let i =0;i<param.length;i++) {
-            if(resobj[param[i].split('=')[0]]){
+            if(resobj[param[i].split('=')[0]]){ // 如果key已经存在，直接push值
                 resobj[param[i].split('=')[0]].push(param[i].split('=')[1])
+                console.log(resobj,'+++++')
             }else {
                 resobj[param[i].split('=')[0]]=[param[i].split('=')[1]]
+                console.log([param[i].split('=')[1]],'/////')
             }
         }
         return resobj
     }
 }
-console.log(getUrlParam('http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe','key'))
+console.log(getUrlParam('http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe'))
