@@ -13,9 +13,10 @@ Array.prototype.uniq = function () {
 // console.log(this,'llll')
     var hasNaN = false // 特殊情况NaN
     for(var i=0;i<this.length;i++) {
-        if (isNaN(this[i])) {hasNaN=true}
+        if (this[i] !== this[i]) {hasNaN=true}
+        console.log(hasNaN,'hasnan')
         for (var j=i+1;j<this.length;) {
-            if(this[i] === this[j] || (hasNaN && this[i] !== this[j])) {
+            if(this[i] === this[j] || (hasNaN && this[j] !== this[j])) {
                 this.splice(j,1)
             }else {
                 j++
@@ -26,6 +27,7 @@ Array.prototype.uniq = function () {
 //     var hasNaN = false;
 //     for(var i = 0; i < this.length; i++){
 //         if(this[i] !== this[i]) hasNaN = true;
+//         console.log(hasNaN,'hasnan')
 //         for(var j = i+1; j < this.length;){
 //             if(this[i] === this[j] ||(hasNaN && this[j] !== this[j])){
 //                 this.splice(j,1);
