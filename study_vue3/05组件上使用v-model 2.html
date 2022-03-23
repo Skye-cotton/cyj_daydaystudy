@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="leo" > 
+        
+            <blog-input
+              
+            ></blog-input>
+            {{ modelValue }}
+        
+
+    </div>
+</body>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                modelValue: '1'
+            }
+        }
+    }) // 创建Vue应用
+
+    app.component('blog-input',{
+        props: ['modelValue'],
+        emits: ['update:modelValue'],
+        template: `<input v-model="value" />`,
+        computed: {
+            value: {
+                get() {
+                    return this.modelValue
+                },
+                set(value) {
+                    this.$emit('update:modelValue', value)
+                }
+            }
+        }
+    })
+
+    // 挂载
+    app.mount('#leo')
+
+</script>
+</html>

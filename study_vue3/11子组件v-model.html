@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="leo">
+        {{ firstName }}
+        {{ lastName }}
+        <my-component 
+        v-model:first-name="firstName"
+        v-model:last-name="lastName"
+        ></my-component>
+    </div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                firstName: 'chen',
+                lastName: 'yujue'
+            }
+        }
+    })
+
+    app.component('my-component', {
+        props: {
+            firstName: String,
+            lastName: String
+        },
+        emits: ['update: firstName','update: lastName'],
+        template:`
+        <input
+            type='text'
+            :value='firstName'
+            @input="$emit('update:firstName',$event.target.value)"><br>
+        <input
+            type='text'
+            :value='lastName'
+            @input="$emit('update:lastName',$event.target.value)">    
+        `
+    })
+    
+
+
+    app.mount('#leo')
+</script>
+</html>
