@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <style>
+        #title {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="title"> 我是一行标题 </div><br><br>
+
+<script>
+    function enlarge(size) {
+        return function () {
+            document.body.style.fontSize = size + 'px'
+        }
+    }
+    var size12 = enlarge(12)
+
+    document.getElementById('title').onclick = size12
+</script>
+</body>
+</html>
